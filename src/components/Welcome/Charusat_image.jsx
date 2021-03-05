@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './Charusat_image.css';
+import Login from '../Login/Login';
+import {BrowserRouter,Link} from 'react-router-dom';
 
 class Charusat_image extends Component{
     render(){
@@ -15,9 +17,11 @@ class Charusat_image extends Component{
                 </div>
 
                 <div className="buttons">
-                    <button className="btns" onClick="https://www.google.com" >Student</button>
+                <BrowserRouter>
+                    <button className="btns"><Link to="/Login">Student</Link></button>
+                </BrowserRouter>
                     <br/><br/><br/><br/>
-                    <button className="btns" onClick="https://www.youtube.com">Recruiter</button>
+                    <button className="btns"><Link to="/Login">Recruiter</Link></button>
                 </div>
                                 
             </div>
