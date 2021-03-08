@@ -19,10 +19,10 @@ class Charusat_image extends Component{
 
                 <div className="buttons">
                 <BrowserRouter>
-                    <button className="btns"><Link to="/Login">Student</Link></button>
+                    <button className="btns"><Link to="/login">Student</Link></button>
                 </BrowserRouter>
                     <br/><br/><br/><br/>
-                    <button className="btns"><Link to="/Login">Recruiter</Link></button>
+                    <button className="btns"><Link to="/login">Recruiter</Link></button>
                 </div>
                                 
             </div>

@@ -1,8 +1,21 @@
-import React,{Component} from 'react';
+import React,{Component, useState} from 'react';
+import Axios from 'axios';
+
+function Login(){
+    
+        const [UserID,setUserID] = useState("");
+        const [UserPassword,setUserPassword] = useState("");  
 
 
-class Login extends React.Component{
-    render(){
+        const login = () =>{
+            Axios.post("http://localhost:3001/login",{
+                UserID : UserID,
+                UserPassword : UserPassword
+            }).then((response)=>{
+                console.log(response);
+            });
+        };
+
         return(
             <div>
                 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -23,13 +36,21 @@ class Login extends React.Component{
                                         <form action="#!">
                                         <div class="form-group">
                                             <label for="email" class="sr-only">Email</label>
-                                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address"/>
+                                            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" 
+                                                onChange={(e)=>{
+                                                    setUserID(e.target.value);
+                                                }}
+                                            />
                                         </div>
                                         <div class="form-group mb-4">
                                             <label for="password" class="sr-only">Password</label>
-                                            <input type="password" name="password" id="password" class="form-control" placeholder="***********"/>
+                                            <input type="password" name="password" id="password" class="form-control" placeholder="***********"
+                                                onChange={(e)=>{
+                                                    setUserPassword(e.target.value);
+                                                }}
+                                            />
                                         </div>
-                                        <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login"/>
+                                        <input name="login" id="login" class="btn btn-block login-btn mb-4" type="button" value="Login" onClick={login}/>
                                         </form>
                                         
                                         <a href="#!" class="forgot-password-link">Forgot password?</a>
@@ -47,6 +68,5 @@ class Login extends React.Component{
             </div>
         )
     }
-}
 
 export default Login;
