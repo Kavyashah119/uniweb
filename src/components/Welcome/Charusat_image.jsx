@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import './Charusat_image.css';
 import Login from '../Login/Login';
 import {BrowserRouter,Link} from 'react-router-dom';
+import Images from '../Images/charusat.jpg';
 
 class Charusat_image extends Component{
     render(){
         return(
             <>
              <div className="container">
-                <img src="https://www.fresherslive.com/assets-images/education/origin/2020/07/15/charusat-result.jpg" alt="Charusat Image" width="100%" />
+                <img src={Images} alt="Charusat Image" width="100%" />
                 
                 <div className="text-block">
                     <h1>A one stop portal for Placements</h1>

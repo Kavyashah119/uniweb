@@ -14,15 +14,12 @@ class Login extends React.Component{
                         <div class="card login-card">
                             <div class="row no-gutters">
                                 <div class="col-md-5">
-                                    <img src="assets/images/login.jpg" alt="login" class="login-card-img"/>
+                                    <img src="assets/images/poster.png" alt="login" class="login-card-img"/>
                                 </div>
                 
                                 <div class="col-md-7">
                                     <div class="card-body">
-                                        <div class="brand-wrapper">
-                                            <img src="assets/images/logo.svg" alt="logo" class="logo"/>
-                                        </div>
-                                        <p class="login-card-description">Sign into your account</p>
+                                         <p class="login-card-description">Sign into your account</p>
                                         <form action="#!">
                                         <div class="form-group">
                                             <label for="email" class="sr-only">Email</label>
