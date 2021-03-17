@@ -3,6 +3,7 @@ import './Charusat_image.css';
 import Login from '../Login/Login';
 import {BrowserRouter,Link} from 'react-router-dom';
 import Images from '../Images/charusat.jpg';
+import Register from '../Registration/Register';
 
 class Charusat_image extends Component{
     render(){
@@ -24,6 +25,8 @@ class Charusat_image extends Component{
                     <br/><br/><br/><br/>
                     <button className="btns"><Link to="/login">Recruiter</Link></button>
                 </div>
+
+                <Register />
                                 
             </div>
             </>

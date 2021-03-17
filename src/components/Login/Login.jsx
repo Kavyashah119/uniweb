@@ -1,5 +1,6 @@
 import React,{Component, useState} from 'react';
 import Axios from 'axios';
+import Register from '../Registration/Register';
 
 function Login(){
     
@@ -12,7 +13,8 @@ function Login(){
                 UserID : UserID,
                 UserPassword : UserPassword
             }).then((response)=>{
-                console.log(response);
+                console.log(response);                
+
             });
         };
 

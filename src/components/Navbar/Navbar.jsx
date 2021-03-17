@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MenuItems } from "./MenuItems"
 import { Button } from "./Button"
 import './Navbar.css'
+import {BrowserRouter,Link} from 'react-router-dom'
 
 class Navbar extends Component {
     state = { clicked: false }
@@ -29,7 +30,12 @@ class Navbar extends Component {
                         )
                     })}
                 </ul>
-                <Button>Sign Up</Button>
+                
+                <BrowserRouter>
+                    <Button><Link to="/register">Sign Up</Link></Button>
+                </BrowserRouter>
+
+                
             </nav>
         )
     }

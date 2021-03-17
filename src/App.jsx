@@ -7,6 +7,7 @@ import Login from '../src/components/Login/Login';
 import {BrowserRouter , Route , Switch} from 'react-router-dom';
 // import Recruiters from './components/Welcome/Recruiters/index'
 import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
+import Register from './components/Registration/Register';
 
 function App() {
   return (
@@ -14,10 +15,11 @@ function App() {
       <BrowserRouter>
       <Route exact path="/" component={Navbar}/>      
       <Route exact path="/" component={Charusat_image}/>
-      <Route exact path="/" component={Major_Recruiters} />
+      {/* <Route exact path="/" component={Major_Recruiters} /> */}
       
         <Switch>
-          <Route exact path="/Login" component={Login}/>                    
+          <Route exact path="/Login" component={Login}/> 
+          <Route exact path="/Register" component={Register} />                   
         </Switch>          
       </BrowserRouter>
      
