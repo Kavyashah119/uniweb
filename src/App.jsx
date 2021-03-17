@@ -7,7 +7,6 @@ import Login from '../src/components/Login/Login';
 import {BrowserRouter , Route , Switch} from 'react-router-dom';
 // import Recruiters from './components/Welcome/Recruiters/index'
 import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
-import Register from './components/Registration/Register';
 
 function App() {
   return (
