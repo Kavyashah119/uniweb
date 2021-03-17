@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 
-class Major_Recruiters extends React.Component{
+function Major_Recruiters(){
     
-    render(){
+    
         // let styles = {
         //     fontSize:24,
         //     color: 'white',
@@ -15,8 +15,7 @@ class Major_Recruiters extends React.Component{
            </div>
        );
 
-    }
+ }
      
-}
 
 export default Major_Recruiters;

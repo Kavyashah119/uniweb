@@ -1,19 +1,26 @@
 import React,{Component, useState} from 'react';
 import Axios from 'axios';
-import Register from '../Registration/Register';
+import {BrowserRouter,Link, Route} from 'react-router-dom';
+import Major_Recruiters from '../Welcome/Recruiters/Major_Recruiters'
+import {Redirect} from 'react-router-dom';
 
 function Login(){
     
         const [UserID,setUserID] = useState("");
-        const [UserPassword,setUserPassword] = useState("");  
+        const [UserPassword,setUserPassword] = useState(""); 
+       
 
-
-        const login = () =>{
+        const login = (props) =>{
             Axios.post("http://localhost:3001/login",{
                 UserID : UserID,
                 UserPassword : UserPassword
             }).then((response)=>{
-                console.log(response);                
+                window.location.href = '/demo';
+                console.log(response);
+                console.log("Kavya");
+                
+
+                // console.log(response);
 
             });
         };
