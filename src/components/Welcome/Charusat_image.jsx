@@ -21,6 +21,8 @@ class Charusat_image extends Component{
                 <BrowserRouter>
                     <button className="btns"><Link to="/login">Student</Link></button>
                 </BrowserRouter>
+                {/* <button className="btns" onAuxClick={window.location.href="/login"}></button> */}
+                
                     <br/><br/><br/><br/>
                     <button className="btns"><Link to="/login">Recruiter</Link></button>
                 </div>

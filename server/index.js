@@ -1,6 +1,7 @@
 const { createPool } = require('mysql');
 const express = require('express');
 const cors= require('cors');
+const {BrowserRouter,Route,Link} = require('react-router-dom');
 
 const app = express();
 app.use(cors());
@@ -48,6 +49,8 @@ app.post('/login',(req,res)=>{
                             console.log("Invalid Combination!!");
                         }else{
                             console.log(resultI)
+                            res.send(resultI);
+                            
                             // res.send(result)
                         }
                     }
