@@ -28,7 +28,7 @@ class Charusat_image extends Component{
                     <button className="btns"><Link to="/login">Recruiter</Link></button>
                 </div>
 
-                <Register />
+                {/* <Register /> */}
                                 
             </div>
             </>

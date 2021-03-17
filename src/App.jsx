@@ -16,11 +16,12 @@ function App() {
       <Route exact path="/" component={Navbar}/>      
       <Route exact path="/" component={Charusat_image}/>
       <Route exact path="/" component={Major_Recruiters} />
-     
+      
      
         <Switch>
           <Route exact path="/login" component={Login}/>                             
-          <Route exact path="/demo" component={Charusat_image}/>                             
+          <Route exact path="/demo" component={Charusat_image}/>
+          <Route exact path="/register" component={Register}/>                             
         </Switch>          
       </BrowserRouter>
      
