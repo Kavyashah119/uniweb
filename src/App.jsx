@@ -10,6 +10,8 @@ import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
 import Register from './components/Registration/Register';
 import Admin from './admin';
 import UserData from './components/UserData/userdata'
+import Choice from './components/Registration/Choice'
+import companyregister from './components/Registration/Company_Register'
 function App() {
   return (
     <div className="App">
@@ -22,8 +24,10 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login}/>                             
           <Route exact path="/demo" component={Charusat_image}/>
-          <Route exact path="/register" component={Register}/>                             
+          <Route exact path="/studentregister" component={Register}/>                             
+          <Route exact path="/companyregister" component={companyregister}/>                             
           <Route exact path="/admin" component={Admin}/>                             
+          <Route exact path="/choice" component={Choice}/>                             
           <Route exact path="/admin/student" component={UserData}/>                             
         </Switch>          
       </BrowserRouter>
