@@ -8,9 +8,8 @@ import {BrowserRouter , Route , Switch} from 'react-router-dom';
 // import Recruiters from './components/Welcome/Recruiters/index'
 import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
 import Register from './components/Registration/Register';
-import Company_Register from './components/Registration/Company_Register';
-import Choice from './components/Registration/Choice';
-
+import Admin from './admin';
+import UserData from './components/UserData/userdata'
 function App() {
   return (
     <div className="App">
@@ -23,9 +22,9 @@ function App() {
         <Switch>
           <Route exact path="/login" component={Login}/>                             
           <Route exact path="/demo" component={Charusat_image}/>
-          <Route exact path="/choice" component={Choice} />
-          <Route exact path="/studentregister" component={Register}/> 
-          <Route exact path="/companyregister" component={Company_Register} />                            
+          <Route exact path="/register" component={Register}/>                             
+          <Route exact path="/admin" component={Admin}/>                             
+          <Route exact path="/admin/student" component={UserData}/>                             
         </Switch>          
       </BrowserRouter>
      
