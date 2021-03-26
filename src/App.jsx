@@ -12,6 +12,7 @@ import Admin from './admin';
 import UserData from './components/UserData/userdata'
 import Choice from './components/Registration/Choice'
 import companyregister from './components/Registration/Company_Register'
+import StudentUpdate from './components/ViewProfile/StudentUpdate'
 function App() {
   return (
     <div className="App">
@@ -28,7 +29,8 @@ function App() {
           <Route exact path="/companyregister" component={companyregister}/>                             
           <Route exact path="/admin" component={Admin}/>                             
           <Route exact path="/choice" component={Choice}/>                             
-          <Route exact path="/admin/student" component={UserData}/>                             
+          <Route exact path="/admin/student" component={UserData}/>
+          <Route exact path="/student/profile" component={StudentUpdate}/>                             
         </Switch>          
       </BrowserRouter>
      
