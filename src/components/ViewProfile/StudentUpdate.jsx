@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../Registration/Register.css'
 import { Multiselect } from 'multiselect-react-dropdown'
 import { Button } from '../Navbar/Button';
 import Axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
-const StudentUpdate = () => {
+
+const StudentUpdate = (props) => {
 
     const [firstName,setFirstName]=useState('');
     const [middleName,setMiddleName]=useState('');
@@ -31,8 +33,45 @@ const StudentUpdate = () => {
     const [achievements,setAchievements]=useState('');
     const [location,setLocation]=useState('');
 
-    const RegisterData = (props) =>{
-        Axios.post("http://localhost:3001/studentRegister",{
+
+    useEffect(()=>{
+        // console.log(props.id)
+        console.log(props.match.params.id)
+        // fetch("https://localhost:3001/studentsData/"+props.match.params.id).then(res=>{
+        //     res.json();
+        // }).then((result)=>{
+        //     console.log(result)
+        // })
+        Axios.get(`http://localhost:3001/studentsData/${props.match.params.id}`).then(res=>{
+            console.log(res.data)
+            setAddress(res.data[0].Address)
+            setLastName(res.data[0].LastName)
+            setMiddleName(res.data[0].MiddleName)
+            setFirstName(res.data[0].FirstName)
+            setAchievements(res.data[0].Achievements)
+            setBranch(res.data[0].Branch)
+            setCGPA(res.data[0].CGPA)
+            setSGPA1(res.data[0].SGPA1)
+            setSGPA2(res.data[0].SGPA2)
+            setSGPA3(res.data[0].SGPA3)
+            setSGPA4(res.data[0].SGPA4)
+            setSGPA5(res.data[0].SGPA5)
+            setSGPA6(res.data[0].SGPA6)
+            setSGPA7(res.data[0].SGPA7)
+            setSGPA8(res.data[0].SGPA8)
+            setCharusatEmail(res.data[0].CharusatEmail)
+            setDob(res.data[0].DOB)
+            setDomain(res.data[0].Domain)
+            setID(res.data[0].ID)
+            setMobileNumber(res.data[0].MobileNumber)
+            setPersonalEmail(res.data[0].PersonalEmail)
+            setPincode(res.data[0].Pincode)
+            setLocation(res.data[0].PreferredLocation)
+        })
+    },[]);
+
+    const UpdateData = (props) =>{
+        Axios.post("http://localhost:3001/studentDataUpdate",{
             firstName : firstName,
             middleName : middleName,
             lastName : lastName,
@@ -107,48 +146,48 @@ const StudentUpdate = () => {
 
                             <div className="input-group">
                                 <label htmlFor="name" style={{ marginRight: "68px" }}>Name</label>
-                                <input type="text" name="firstname" placeholder="First Name" className="inputbox" size="40" onChange={(event) =>{
+                                <input type="text" value={firstName} name="firstname" placeholder="First Name" className="inputbox" size="40" onChange={(event) =>{
                                     setFirstName(event.target.value);
                                 }} required />
-                                <input type="text" name="middlename" placeholder="Middle Name" className="inputbox" size="40"onChange={(event) =>{
+                                <input type="text"value={middleName} name="middlename" placeholder="Middle Name" className="inputbox" size="40"onChange={(event) =>{
                                     setMiddleName(event.target.value);
                                 }} required />
-                                <input type="text" name="lastname" placeholder="Last Name" className="inputbox" size="40"onChange={(event) =>{
+                                <input type="text" value={lastName} name="lastname" placeholder="Last Name" className="inputbox" size="40"onChange={(event) =>{
                                     setLastName(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group">
                                 <label htmlFor="dob" style={{ marginRight: "22px" }}>Date-of-Birth</label>
-                                <input type="date" name="dob" placeholder="Date of Birth" className="inputbox" size="40"onChange={(event) =>{
+                                <input type="date"value={dob} disabled={true} name="dob" placeholder="Date of Birth" className="inputbox" size="40"onChange={(event) =>{
                                     setDob(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group">
                                 <label htmlFor="personal-email">Personal e-mail</label>
-                                <input type="email" name="personal-email" placeholder="Personal Email" className="inputbox" size="40"onChange={(event) =>{
+                                <input type="email" value={personalEmail} name="personal-email" placeholder="Personal Email" className="inputbox" size="40"onChange={(event) =>{
                                     setPersonalEmail(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group">
                                 <label htmlFor="mobileno" style={{ marginRight: "5px" }}>Mobile Number</label>
-                                <input type="tel" name="mobileno" placeholder="Mobile Number" className="inputbox" size="40" pattern="[0-9]{10}" maxLength="10"onChange={(event) =>{
+                                <input type="tel" value={MobileNumber} name="mobileno" placeholder="Mobile Number" className="inputbox" size="40" pattern="[0-9]{10}" maxLength="10"onChange={(event) =>{
                                     setMobileNumber(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group" >
                                 <label htmlFor="address" style={{ marginRight: "55px", verticalAlign: "top" }}>Address</label>
-                                <textarea name="address" placeholder="Address" className="inputbox" rows="5" cols="100"onChange={(event) =>{
+                                <textarea name="address" placeholder="Address" value={address} className="inputbox" rows="5" cols="100"onChange={(event) =>{
                                     setAddress(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group">
                                 <label htmlFor="pincode" style={{ marginRight: "55px" }}>Pincode</label>
-                                <input type="text" placeholder="Pincode" className="inputbox" maxLength="6"onChange={(event) =>{
+                                <input type="text" value={pincode} placeholder="Pincode" className="inputbox" maxLength="6"onChange={(event) =>{
                                     setPincode(event.target.value);
                                 }} required />
                             </div>
@@ -161,14 +200,14 @@ const StudentUpdate = () => {
 
                             <div className="input-group">
                                 <label htmlFor="id" style={{ marginRight: "72px" }}>ID No.</label>
-                                <input type="text" name="id" placeholder="ID" className="inputbox"onChange={(event) =>{
+                                <input type="text" disabled={true} name="id" value={ID} placeholder="ID" className="inputbox"onChange={(event) =>{
                                     setID(event.target.value);
                                 }} required />
                             </div>
 
                             <div className="input-group">
                                 <label htmlFor="branch" style={{ marginRight: "65px" ,borderWidth:"10px"}}>Branch</label>
-                                <select id="branch" name="branch" className="inputbox"onChange={(event) =>{
+                                <select id="branch" name="branch" value={branch} className="inputbox"onChange={(event) =>{
                                     setBranch(event.target.value);
                                 }}>
                                     {/* <option value=""></option> */}
@@ -185,7 +224,7 @@ const StudentUpdate = () => {
 
                             <div className="input-group">
                                 <label htmlFor="college-email">Charusat e-mail</label>
-                                <input type="email" name="college-email" placeholder="Charusat Email" className="inputbox" size="40"onChange={(event) =>{
+                                <input type="email" disabled={true} value={charusatEmail} name="college-email" placeholder="Charusat Email" className="inputbox" size="40"onChange={(event) =>{
                                     setCharusatEmail(event.target.value);
                                 }} required />
                             </div>
@@ -203,28 +242,28 @@ const StudentUpdate = () => {
                                     <option value="Semester 7">Semester 7</option>
                                     <option value="Semester 8">Semester 8</option>
                                 </select> */}
-                                <input type="number" name="sgpa" placeholder="Semester-1" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA1} name="sgpa" placeholder="Semester-1" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA1(event.target.value);
                                 }} required />
-                                <input type="number" name="sgpa" placeholder="Semester-2" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA2} name="sgpa" placeholder="Semester-2" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA2(event.target.value);
                                 }} required />
-                                <input type="number" name="sgpa" placeholder="Semester-3" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA3} name="sgpa" placeholder="Semester-3" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA3(event.target.value);
                                 }} required />
-                                <input type="number" name="sgpa" placeholder="Semester-4" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA4} name="sgpa" placeholder="Semester-4" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA4(event.target.value);
                                 }} required /><br />
-                                <input type="number" name="sgpa" placeholder="Semester-5" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA5} name="sgpa" placeholder="Semester-5" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA5(event.target.value);
                                 }} required style={{ marginLeft: "120px" }} />
-                                <input type="number" name="sgpa" placeholder="Semester-6" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA6} name="sgpa" placeholder="Semester-6" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA6(event.target.value);
                                 }} required />
-                                <input type="number" name="sgpa" placeholder="Semester-7" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA7} name="sgpa" placeholder="Semester-7" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA7(event.target.value);
                                 }} required />
-                                <input type="number" name="sgpa" placeholder="Semester-8" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
+                                <input type="number" value={SGPA8} name="sgpa" placeholder="Semester-8" step="0.001" min="0" max="10" className="inputbox"onChange={(event) =>{
                                     setSGPA8(event.target.value);
                                 }} required />
 
@@ -232,7 +271,7 @@ const StudentUpdate = () => {
 
                             <div className="input-group">
                                 <label htmlFor="cgpa" style={{ marginRight: "70px" }} >CGPA</label>
-                                <input type="float" placeholder="Overall CGPA" className="inputbox"onChange={(event) =>{
+                                <input type="float" value={CGPA} placeholder="Overall CGPA" className="inputbox"onChange={(event) =>{
                                     setCGPA(event.target.value);
                                 }} required />
                             </div>
@@ -246,7 +285,7 @@ const StudentUpdate = () => {
 
                             <div className="input-group">
                                 <label htmlFor="achievements" style={{ marginRight: "15px", verticalAlign: "top" }} > Achievements</label>
-                                <textarea name="achievements" placeholder="Other Achievements" className="inputbox" rows="5" cols="100"onChange={(event) =>{
+                                <textarea name="achievements" value={achievements} placeholder="Other Achievements" className="inputbox" rows="5" cols="100"onChange={(event) =>{
                                     setAchievements(event.target.value);
                                 }} />
                             </div>
@@ -271,7 +310,7 @@ const StudentUpdate = () => {
                         </div>
 
                         {/* <input type="submit" value="Submit" /> */}
-                        <Button onClick={RegisterData}>Update</Button>
+                        <Button onClick={UpdateData}>Update</Button>
 
                         <footer>
                             <p>Copyright @ 2021, Inc. All Rights Reserved</p>
