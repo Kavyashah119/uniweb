@@ -16,7 +16,7 @@ function Login(){
                 UserID : UserID,
                 UserPassword : UserPassword
             }).then((response)=>{
-                window.location.href = <StudentPortal/>;
+                window.location.href ="/studentportal/"+`${UserID}`;
                 console.log(response);
                 console.log("Kavya");
                 

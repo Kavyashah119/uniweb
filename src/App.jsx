@@ -32,7 +32,7 @@ function App() {
           <Route exact path="/choice" component={Choice}/>                             
           <Route exact path="/admin/student" component={UserData}/>
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
-          <Route exact path="/studentportal" component={StudentPortal} />                              
+          <Route  path="/studentportal/:id" component={StudentPortal} />                              
         </Switch>          
       </BrowserRouter>
      
