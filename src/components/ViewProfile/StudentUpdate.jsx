@@ -8,6 +8,7 @@ import {withRouter} from 'react-router-dom'
 
 const StudentUpdate = (props) => {
 
+
     const [firstName,setFirstName]=useState('');
     const [middleName,setMiddleName]=useState('');
     const [lastName,setLastName]=useState('');
@@ -32,6 +33,9 @@ const StudentUpdate = (props) => {
     const [domain,setDomain]=useState('');
     const [achievements,setAchievements]=useState('');
     const [location,setLocation]=useState('');
+
+
+    var Rlink=`/studentportal/${ID}`
 
 
     useEffect(()=>{
@@ -97,8 +101,11 @@ const StudentUpdate = (props) => {
             PLocation : PLocation
 
         }).then((response) =>{
-            window.location.href = '/admin';
-            console.log("Response Received");
+            if(alert("Your Data has been updated..!!")|true){
+                window.location.href = Rlink;
+                console.log("Response Received");
+            }
+           
         });
     }
 
