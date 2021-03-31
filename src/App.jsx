@@ -8,11 +8,12 @@ import {BrowserRouter , Route , Switch} from 'react-router-dom';
 // import Recruiters from './components/Welcome/Recruiters/index'
 import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
 import Register from './components/Registration/Register';
-import Admin from './admin';
+import Admin from './Admin/admin';
 import UserData from './components/UserData/userdata'
 import Choice from './components/Registration/Choice'
 import companyregister from './components/Registration/Company_Register'
 import StudentUpdate from './components/ViewProfile/StudentUpdate'
+import StudentPortal from './components/Student Portal/StudentPortal'
 function App() {
   return (
     <div className="App">
@@ -30,7 +31,8 @@ function App() {
           <Route exact path="/admin" component={Admin}/>                             
           <Route exact path="/choice" component={Choice}/>                             
           <Route exact path="/admin/student" component={UserData}/>
-          <Route  path="/student/profile/:id" component={StudentUpdate}/>                             
+          <Route  path="/student/profile/:id" component={StudentUpdate}/>
+          <Route exact path="/studentportal" component={StudentPortal} />                              
         </Switch>          
       </BrowserRouter>
      

@@ -3,6 +3,7 @@ import Axios from 'axios';
 import {BrowserRouter,Link, Route} from 'react-router-dom';
 import Major_Recruiters from '../Welcome/Recruiters/Major_Recruiters'
 import {Redirect} from 'react-router-dom';
+import StudentPortal from '../Student Portal/StudentPortal'
 
 function Login(){
     
@@ -15,7 +16,7 @@ function Login(){
                 UserID : UserID,
                 UserPassword : UserPassword
             }).then((response)=>{
-                window.location.href = '/demo';
+                window.location.href = <StudentPortal/>;
                 console.log(response);
                 console.log("Kavya");
                 
