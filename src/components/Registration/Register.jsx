@@ -29,6 +29,7 @@ const Register = () => {
     const [CGPA,setCGPA]=useState('');
     const [domain,setDomain]=useState('');
     const [achievements,setAchievements]=useState('');
+    const [password,setPassword]=useState('');
     const [location,setLocation]=useState('');
 
     const RegisterData = (props) =>{
@@ -54,6 +55,7 @@ const Register = () => {
             SGPA8 : SGPA8,
             CGPA : CGPA,
             domain : domain,
+            password : password,
             achievements : achievements,
             PLocation : PLocation
 
@@ -163,6 +165,13 @@ const Register = () => {
                                 <label htmlFor="id" style={{ marginRight: "72px" }}>ID No.</label>
                                 <input type="text" name="id" placeholder="ID" className="inputbox"onChange={(event) =>{
                                     setID(event.target.value);
+                                }} required />
+                            </div>
+
+                            <div className="input-group">
+                                <label htmlFor="password" style={{ marginRight: "20px" }}>Set Password</label>
+                                <input type="password" name="password" placeholder="Password" className="inputbox"onChange={(event) =>{
+                                    setPassword(event.target.value);
                                 }} required />
                             </div>
 

@@ -32,6 +32,7 @@ const StudentUpdate = (props) => {
     const [CGPA,setCGPA]=useState('');
     const [domain,setDomain]=useState('');
     const [achievements,setAchievements]=useState('');
+    const [password,setPassword]=useState('');
     const [location,setLocation]=useState('');
 
 
@@ -70,6 +71,7 @@ const StudentUpdate = (props) => {
             setMobileNumber(res.data[0].MobileNumber)
             setPersonalEmail(res.data[0].PersonalEmail)
             setPincode(res.data[0].Pincode)
+            setPassword(res.data[0].SPassword)
             setLocation(res.data[0].PreferredLocation)
         })
     },[]);
@@ -98,6 +100,7 @@ const StudentUpdate = (props) => {
             CGPA : CGPA,
             domain : domain,
             achievements : achievements,
+            password : password,
             PLocation : PLocation
 
         }).then((response) =>{
@@ -209,6 +212,13 @@ const StudentUpdate = (props) => {
                                 <label htmlFor="id" style={{ marginRight: "72px" }}>ID No.</label>
                                 <input type="text" disabled={true} name="id" value={ID} placeholder="ID" className="inputbox"onChange={(event) =>{
                                     setID(event.target.value);
+                                }} required />
+                            </div>
+
+                            <div className="input-group">
+                                <label htmlFor="password" style={{ marginRight: "20px" }}>Set Password</label>
+                                <input type="password" name="password" placeholder="Password" value={password} className="inputbox"onChange={(event) =>{
+                                    setPassword(event.target.value);
                                 }} required />
                             </div>
 

@@ -98,12 +98,21 @@ app.post('/studentRegister',(req,res)=>{
     const  CGPA = req.body.CGPA;
     const  domain = req.body.domain;
     const  achievements = req.body.achievements;
+    const  password = req.body.password;
     const  PLocation = req.body.PLocation;
 
-    pool.query(`INSERT INTO uniweb.studentinfofinal ( ID, Branch, FirstName, MiddleName, LastName, CharusatEmail, MobileNumber, CGPA, SGPA1, SGPA2, SGPA3, SGPA4, SGPA5, SGPA6, SGPA7, SGPA8, Domain, PreferredLocation, PersonalEmail, DOB, Address, Pincode, Achievements) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[ID,branch,firstName,middleName,lastName,charusatEmail,MobileNumber,CGPA,SGPA1,SGPA2,SGPA3,SGPA4,SGPA5,SGPA6,SGPA7,SGPA8,domain,PLocation,personalEmail,dob,address,pincode,achievements], (err,result)=>{
+    pool.query(`INSERT INTO uniweb.studentinfofinal ( ID, Branch, FirstName, MiddleName, LastName, CharusatEmail, MobileNumber, CGPA, SGPA1, SGPA2, SGPA3, SGPA4, SGPA5, SGPA6, SGPA7, SGPA8, Domain, PreferredLocation, PersonalEmail, DOB, Address, Pincode, Achievements, SPassword) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,[ID,branch,firstName,middleName,lastName,charusatEmail,MobileNumber,CGPA,SGPA1,SGPA2,SGPA3,SGPA4,SGPA5,SGPA6,SGPA7,SGPA8,domain,PLocation,personalEmail,dob,address,pincode,achievements,password], (err,result)=>{
         if(err){
             console.log(err);
         }else{
+            pool.query(`INSERT INTO uniweb.userauth (UserID,UserPassword) VALUES (?,?)`,[ID,password],(error,resultS)=>{
+                if(error){
+                    console.log(error)
+                }else{
+                    // res.send("Data Inserted in userauth also")
+                    console.log("Data inserted in userauth also")
+                }
+            })
             res.send("Hello!!");
             console.log("Data Inserted!!");
         }
@@ -136,9 +145,10 @@ app.post('/studentDataUpdate',(req,res)=>{
     const  CGPA = req.body.CGPA;
     const  domain = req.body.domain;
     const  achievements = req.body.achievements;
+    const  password = req.body.password;
     const  PLocation = req.body.PLocation;
 
-    pool.query(`UPDATE studentinfofinal set Branch=? , FirstName=?, MiddleName=?, LastName=?, CharusatEmail=? , MobileNumber=?, CGPA=?, SGPA1=?, SGPA2=?, SGPA3=?, SGPA4=?, SGPA5=?, SGPA6=?, SGPA7=?,SGPA8=? ,Domain=?, PreferredLocation=? ,PersonalEmail=?, DOB=?, Address=?, Pincode=?, Achievements=? where ID=?  `,[branch,firstName,middleName,lastName,charusatEmail,MobileNumber,CGPA,SGPA1,SGPA2,SGPA3,SGPA4,SGPA5,SGPA6,SGPA7,SGPA8,domain,PLocation,personalEmail,dob,address,pincode,achievements,ID], (err,result)=>{
+    pool.query(`UPDATE studentinfofinal set Branch=? , FirstName=?, MiddleName=?, LastName=?, CharusatEmail=? , MobileNumber=?, CGPA=?, SGPA1=?, SGPA2=?, SGPA3=?, SGPA4=?, SGPA5=?, SGPA6=?, SGPA7=?,SGPA8=? ,Domain=?, PreferredLocation=? ,PersonalEmail=?, DOB=?, Address=?, Pincode=?, Achievements=?, SPassword=? where ID=?  `,[branch,firstName,middleName,lastName,charusatEmail,MobileNumber,CGPA,SGPA1,SGPA2,SGPA3,SGPA4,SGPA5,SGPA6,SGPA7,SGPA8,domain,PLocation,personalEmail,dob,address,pincode,achievements,password,ID], (err,result)=>{
         if(err){
             console.log(err);
         }else{
