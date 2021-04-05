@@ -14,6 +14,7 @@ import Choice from './components/Registration/Choice'
 import companyregister from './components/Registration/Company_Register'
 import StudentUpdate from './components/ViewProfile/StudentUpdate'
 import StudentPortal from './components/Student Portal/StudentPortal'
+import CompanyBasicData from './components/UserData/Companybasicdata'
 function App() {
   return (
     <div className="App">
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/admin" component={Admin}/>                             
           <Route exact path="/choice" component={Choice}/>                             
           <Route exact path="/admin/student" component={UserData}/>
+          <Route exact path="/admin/company" component={CompanyBasicData}/>
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
           <Route  path="/studentportal/:id" component={StudentPortal} />                              
         </Switch>          

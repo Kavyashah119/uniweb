@@ -72,6 +72,37 @@ app.post('/login',(req,res)=>{
     // })
 })
 
+app.post('/companyRegister',(req,res)=>{
+
+    const name = req.body.name;
+    const Cusername = req.body.Cusername;
+    const CPassword = req.body.CPassword;
+    const ownername = req.body.ownername;
+    const ceoname = req.body.ceoname;
+    const yearofestablish = req.body.yearofestablish;
+    const address = req.body.address;
+    const noofbranch = req.body.noofbranch;
+    const Clocation = req.body.Clocation;
+    const noofemployee = req.body.noofemployee;
+    const Ctools = req.body.Ctools;
+
+    pool.query(`INSERT INTO uniweb.companybasicdetail (Cname,CUsername,CPassword,COwenerName,CCEOName,CAddress,CEastablishYear,CNoBranch,CLocation,CNoEmplyoee,CTools) VALUES (?,?,?,?,?,?,?,?,?,?,?)`,[name,Cusername,CPassword,ownername,ceoname,address,yearofestablish,noofbranch,Clocation,noofemployee,Ctools],(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            pool.query(`INSERT INTO uniweb.companyrequest (Cname,CUsername,CPassword,COwenerName,CCEOName,CAddress,CEastablishYear,CNoBranch,CLocation,CNoEmplyoee,CTools) VALUES (?,?,?,?,?,?,?,?,?,?,?)`,[name,Cusername,CPassword,ownername,ceoname,address,yearofestablish,noofbranch,Clocation,noofemployee,Ctools],(error,resultS)=>{
+                if(error){
+                    console.log(error)
+                }else{
+                    console.log("Company data entered in request table")
+                }
+            })
+            console.log("Success..!!")
+            res.send("result successful")
+        }
+    })
+})
+
 app.post('/studentRegister',(req,res)=>{
 
     const  firstName = req.body.firstName;
@@ -181,6 +212,26 @@ app.get('/studentsData',(req,res)=>{
             console.log("Connected..!!");
 
             pool.query(`select * from studentinfofinal`,(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
+app.get('/companyData',(req,res)=>{
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from companyrequest`,(err,rows,fields)=>{
                 tempCont.release();
                 if(err){
                     throw err;
