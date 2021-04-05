@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Charusat_image.css';
-import Login from '../Login/Login';
+import StudentLogin from '../Login/StudentLogin';
 import {BrowserRouter,Link} from 'react-router-dom';
 import Images from '../Images/charusat.jpg';
 import Register from '../Registration/Register';

@@ -41,6 +41,16 @@ const Company_Register = () => {
                         </div>
 
                         <div className="input-group">
+                            <label htmlFor="username" style={{ marginRight: "110px" }}>UserName</label>
+                            <input type="text" name="username" placeholder="Set UserName" className="inputbox" size="40" required />
+                        </div>
+
+                        <div className="input-group">
+                            <label htmlFor="password" style={{ marginRight: "110px" }}>Set Password</label>
+                            <input type="password" name="password" placeholder="Password" className="inputbox" size="40" required />
+                        </div>
+
+                        <div className="input-group">
                             <label htmlFor="owner" style={{ marginRight: "60px" }}>Owner Name</label>
                             <input type="text" name="owner" placeholder="Owner Name" className="inputbox" size="40" required />
                         </div>
