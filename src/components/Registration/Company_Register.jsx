@@ -32,7 +32,7 @@ const Company_Register = () => {
             Ctools : Ctools
 
         }).then((response) =>{
-            window.location.href = '/admin';
+            window.location.href = '/';
             console.log("Response Received");
         });
     }

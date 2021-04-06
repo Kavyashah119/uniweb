@@ -4,11 +4,11 @@ import Charusat_image from '../Welcome/Charusat_image'
 
 const CompanyPortal = (props) => {
 
-    var UserID
+    var CUsername
 
     useEffect(()=>{
-         UserID = props.match.params.id;
-        console.log(UserID)
+         CUsername = props.match.params.CUsername;
+        console.log(CUsername)
     })
 
     function myFunction() {
@@ -19,20 +19,20 @@ const CompanyPortal = (props) => {
         else { }
 
     }
-    UserID=props.match.params.id
-    console.log(UserID)
-    var Link = `/student/profile/${UserID}`
+    CUsername=props.match.params.CUsername
+    console.log(CUsername)
+    // var Link = `/student/profile/${UserID}`
     return (
         <>
 
             <div className="outer-container">
                 <nav className="navbar">
                     <div className="dropdown">
-                        <button className="dropbtn" id="buttonHeader">{UserID}<i className="fa fa-caret-down"></i>
+                        <button className="dropbtn" id="buttonHeader">{CUsername}<i className="fa fa-caret-down"></i>
                         </button>
                         <div className="dropdown-content">
                             <a href="">Dashboard</a>
-                            <a href={Link} id="link">Edit profile</a>
+                            <a href="" id="link">Edit profile</a>
                             <a onClick={myFunction}> Sign-out </a>
                         </div>
                     </div>

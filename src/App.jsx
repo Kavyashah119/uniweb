@@ -15,6 +15,8 @@ import companyregister from './components/Registration/Company_Register'
 import StudentUpdate from './components/ViewProfile/StudentUpdate'
 import StudentPortal from './components/Student Portal/StudentPortal'
 import CompanyBasicData from './components/UserData/Companybasicdata'
+import CompanyPortal from './components/Company Portal/CompanyPortal'
+import CompanyLogin from './components/Login/CompanyLogin'
 function App() {
   return (
     <div className="App">
@@ -26,6 +28,7 @@ function App() {
      
         <Switch>
           <Route exact path="/login" component={StudentLogin}/>                             
+          <Route exact path="/Companylogin" component={CompanyLogin}/>                             
           <Route exact path="/demo" component={Charusat_image}/>
           <Route exact path="/studentregister" component={Register}/>                             
           <Route exact path="/companyregister" component={companyregister}/>                             
@@ -35,6 +38,7 @@ function App() {
           <Route exact path="/admin/company" component={CompanyBasicData}/>
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
           <Route  path="/studentportal/:id" component={StudentPortal} />                              
+          <Route exact path="/companyportal/:CUsername" component={CompanyPortal} />                              
         </Switch>          
       </BrowserRouter>
      

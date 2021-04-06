@@ -7,16 +7,16 @@ import StudentPortal from '../Student Portal/StudentPortal'
 
 function CompanyLogin() {
 
-    const [UserID, setUserID] = useState("");
-    const [UserPassword, setUserPassword] = useState("");
+    const [CUsername, setCUsername] = useState("");
+    const [CPassword, setCPassword] = useState("");
 
 
     const login = (props) => {
-        Axios.post("http://localhost:3001/login", {
-            UserID: UserID,
-            UserPassword: UserPassword
+        Axios.post("http://localhost:3001/Clogin", {
+            CUsername: CUsername,
+            CPassword: CPassword
         }).then((response) => {
-            window.location.href = "/studentportal/" + `${UserID}`;
+            window.location.href = "/companyportal/" + `${CUsername}`;
             console.log(response);
             console.log("Kavya");
 
@@ -48,7 +48,7 @@ function CompanyLogin() {
                                             <label for="email" class="sr-only">Email</label>
                                             <input type="email" name="email" id="email" class="form-control" placeholder="Email address"
                                                 onChange={(e) => {
-                                                    setUserID(e.target.value);
+                                                    setCUsername(e.target.value);
                                                 }}
                                             />
                                         </div>
@@ -56,7 +56,7 @@ function CompanyLogin() {
                                             <label for="password" class="sr-only">Password</label>
                                             <input type="password" name="password" id="password" class="form-control" placeholder="***********"
                                                 onChange={(e) => {
-                                                    setUserPassword(e.target.value);
+                                                    setCPassword(e.target.value);
                                                 }}
                                             />
                                         </div>

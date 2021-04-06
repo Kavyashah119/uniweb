@@ -54,14 +54,23 @@ class Companybasicdata extends Component {
                         <button className="" onClick={()=>{
                             console.log(props.original.CUsername)
                             console.log("hey there..")
-                            this.deletePoste(props.original.CUsername);
-
-                            Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
+                            if(alert(`${props.original.CUsername} has been approved.`)|true){
+                                this.deletePoste(props.original.CUsername);
+                                Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
                                 CUsername : props.original.CUsername,
                                 CPassword : props.original.CPassword
-                            }).then((response)=>{
+                                }).then((response)=>{
                                 console.log("Data Updated")
-                            })
+                                })
+                            }
+                            // this.deletePoste(props.original.CUsername);
+
+                            // Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
+                            //     CUsername : props.original.CUsername,
+                            //     CPassword : props.original.CPassword
+                            // }).then((response)=>{
+                            //     console.log("Data Updated")
+                            // })
 
                         }} >Approve</button>
                         // <button className="">Disapprove</button>

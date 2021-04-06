@@ -72,6 +72,59 @@ app.post('/login',(req,res)=>{
     // })
 })
 
+app.post('/Clogin',(req,res)=>{
+    const CUsername = req.body.CUsername;
+    const CPassword = req.body.CPassword;
+
+    // pool.query(`select * from userauth where UserID = ? AND UserPassword = ?`,[UserID,UserPassword],(err,result)=>{
+    //     if(err){
+    //         res.send({error : err})
+    //     }else{
+    //         if(result){
+    //             res.send(result);
+    //         }else{
+    //             res.send({message : "Invalid Password!"})
+    //         }
+    //     }
+    // })
+    pool.query(`select CUsername from companyauth where CUsername= ?`,[CUsername],(err,result)=>{
+        if(err){
+            return "Something Went Wrong!!"
+        }else{
+            if(Object.keys(result).length ===0){
+                console.log("User Not Found!! , Please SignUp to login!! or Administrator has not approved your company");
+            }else{
+                pool.query(`select CUsername,CPassword from companyauth where CUsername= ? AND CPassword = ?`,[CUsername,CPassword],(error,resultI)=>{
+                    if (err){
+                        return "Error"
+                    }else{
+                        if(Object.keys(resultI).length ===0 ){
+                            console.log("Invalid Combination!!");
+                        }else{
+                            console.log(resultI)
+                            res.send(resultI);
+                            
+                            // res.send(result)
+                        }
+                    }
+                })
+            }
+        }
+    })
+    // pool.query(`select UserID,UserPassword from userauth where UserID= ? AND UserPassword = ?`,[UserID,UserPassword],(err,result)=>{
+    //     if (err){
+    //         return "Error"
+    //     }else{
+    //         if(Object.keys(result).length ===0 ){
+    //             console.log("Invalid Combination!!");
+    //         }else{
+    //             console.log(result)
+    //             res.send(result)
+    //         }
+    //     }
+    // })
+})
+
 app.post('/companyRegister',(req,res)=>{
 
     const name = req.body.name;
