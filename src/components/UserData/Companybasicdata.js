@@ -32,6 +32,16 @@ class Companybasicdata extends Component {
         })
     }
 
+    deletePoste(CUsername){
+
+        const index = this.state.posts.findIndex(post => {
+          return post.CUsername === CUsername
+        });
+        this.state.posts.splice(index, 1);
+        this.setState({posts: this.state.posts})
+    
+      }
+
 
     render(){
 
@@ -43,6 +53,9 @@ class Companybasicdata extends Component {
                     return(
                         <button className="" onClick={()=>{
                             console.log(props.original.CUsername)
+                            console.log("hey there..")
+                            this.deletePoste(props.original.CUsername);
+
                             Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
                                 CUsername : props.original.CUsername,
                                 CPassword : props.original.CPassword

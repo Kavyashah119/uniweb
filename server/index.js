@@ -226,12 +226,12 @@ app.post('/companydata/:CUsername',(req,res)=>{
                             console.log("Data deleted from companyrequest also")
                         }
                     })
-                    // res.send("Data Inserted in userauth also")
+                    res.send("Data Inserted in userauth also")
                     console.log("Data inserted in companyauth also")
                 }
             })
-            console.log(results);
-            res.send(results)
+            console.log("results");
+            // res.send("results transfered")
         }
         
     });
