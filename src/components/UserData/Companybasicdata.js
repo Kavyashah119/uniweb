@@ -4,6 +4,7 @@ import React, {
 import ReactTable from 'react-table-6'
 import "react-table-6/react-table.css"
 import ExportToExcel from './ExportToExcel';
+import Axios from 'axios'
 // import 'react-table/dist/react-table.development.css'
 // import ExportToExcel from './ExportToExcel'
 
@@ -40,7 +41,16 @@ class Companybasicdata extends Component {
                 Header: "Permission",
                 Cell: props=>{
                     return(
-                        <button className="">Approve</button>
+                        <button className="" onClick={()=>{
+                            console.log(props.original.CUsername)
+                            Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
+                                CUsername : props.original.CUsername,
+                                CPassword : props.original.CPassword
+                            }).then((response)=>{
+                                console.log("Data Updated")
+                            })
+
+                        }} >Approve</button>
                         // <button className="">Disapprove</button>
                     )
                 }
@@ -110,7 +120,7 @@ class Companybasicdata extends Component {
                 showPaginationBottom={false}
                 filterable
                 sortable={true}
-                noDataText="No such Data Found..!!"
+                noDataText="No pending requests!!"
             >
 
             {/* {(state,filteredData,instance) =>{

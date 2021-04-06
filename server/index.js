@@ -203,6 +203,40 @@ app.get('/studentsData/:ID',(req,res)=>{
     });
 });
 
+// company request spesific basic data
+app.post('/companydata/:CUsername',(req,res)=>{
+
+    const username = req.body.CUsername
+    const password = req.body.CPassword
+
+    let sql = `insert into approvedcompanybasic select * from companyrequest where CUsername = ?`;
+    let query  = pool.query(sql,[req.params.CUsername],(err,results) =>{
+        if(err){
+            throw err;
+        } else{
+            pool.query(`INSERT INTO uniweb.companyauth (CUsername,CPassword) VALUES (?,?)`,[username,password],(error,resultS)=>{
+                if(error){
+                    console.log(error)
+                }else{
+                    pool.query(`delete from uniweb.companyrequest where CUsername=?`,[username],(e,r)=>{
+                        if(e){
+                            console.log(e)
+                        }else{
+                            // res.send("Data Inserted in userauth also")
+                            console.log("Data deleted from companyrequest also")
+                        }
+                    })
+                    // res.send("Data Inserted in userauth also")
+                    console.log("Data inserted in companyauth also")
+                }
+            })
+            console.log(results);
+            res.send(results)
+        }
+        
+    });
+});
+
 app.get('/studentsData',(req,res)=>{
     pool.getConnection(function(error,tempCont){
         if(!!error){
