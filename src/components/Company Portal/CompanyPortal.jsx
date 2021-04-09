@@ -6,20 +6,20 @@ const CompanyPortal = (props) => {
 
     var CUsername
 
-    useEffect(()=>{
-         CUsername = props.match.params.CUsername;
+    useEffect(() => {
+        CUsername = props.match.params.CUsername;
         console.log(CUsername)
     })
 
     function myFunction() {
 
         if (window.confirm("Are you sure you want to sign out?")) {
-            window.location.href ="/";
+            window.location.href = "/";
         }
         else { }
 
     }
-    CUsername=props.match.params.CUsername
+    CUsername = props.match.params.CUsername
     console.log(CUsername)
     // var Link = `/student/profile/${UserID}`
     return (
@@ -40,6 +40,11 @@ const CompanyPortal = (props) => {
                     <a href="#home">Home</a>
                     <a href="" className="heading">University Placements</a>
                 </nav>
+
+                <div>
+                    <button className="btn" onClick={window.location.href="/companyaddpost"} >Add Post</button>
+                </div>
+
             </div>
 
         </>

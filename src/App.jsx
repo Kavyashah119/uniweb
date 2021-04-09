@@ -17,6 +17,7 @@ import CompanyBasicData from './components/UserData/Companybasicdata'
 import CompanyPortal from './components/Company Portal/CompanyPortal'
 import CompanyLogin from './components/Login/CompanyLogin'
 import Aim from './components/Welcome/Aim/Aim'
+import CompanyAddPost from './components/Company Portal/CompanyAddPost/CompanyAddPost'
 function App() {
   return (
     <div className="App">
@@ -40,7 +41,8 @@ function App() {
           <Route exact path="/admin/company" component={CompanyBasicData}/>
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
           <Route  path="/studentportal/:id" component={StudentPortal} />                              
-          <Route exact path="/companyportal/:CUsername" component={CompanyPortal} />                              
+          <Route exact path="/companyportal/:CUsername" component={CompanyPortal} />  
+          <Route exact path="/companyaddpost" component={CompanyAddPost} />                          
         </Switch>          
       </BrowserRouter>
      
