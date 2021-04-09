@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './admin.css'
+import AdminBackground from '../components/Images/admin.jpg'
 
 function admin() {
 
@@ -12,11 +13,14 @@ function admin() {
 
     return (
         <div className="admin-module">
-         <p className="admin">Hello Admin!</p>
-                <button className="student" onClick={student}>Student</button>
-                <button className="company" onClick={company}>Company</button> 
-        </div>      
+            <img src={AdminBackground} alt="admin background" />
+            <div className="buttons">
+            <button onClick={student}>Student</button>
+            <button onClick={company}>Company</button>
+            </div>
             
+        </div>
+
     );
 }
 

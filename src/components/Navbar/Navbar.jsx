@@ -13,7 +13,7 @@ class Navbar extends Component {
 
     render() {
         return(
-            <nav className="NavbarItems">
+            <nav className="NavbarItemss">
             <img src="https://www.iaspaper.net/wp-content/uploads/2018/08/Charusat.png" id="charusatImage" style={{float:'left',margin:8,paddingLeft:5}} width="90px" height="90px" />
                 <h1 className="navbar-logo">CHARUSAT<i className="fab fa-react"></i></h1>
                 <div className="menu-icon" onClick={this.handleClick}>

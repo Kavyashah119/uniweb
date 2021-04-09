@@ -6,7 +6,6 @@ import Charusat_image from './components/Welcome/Charusat_image';
 import StudentLogin from '../src/components/Login/StudentLogin';
 import {BrowserRouter , Route , Switch} from 'react-router-dom';
 // import Recruiters from './components/Welcome/Recruiters/index'
-import Major_Recruiters from './components/Welcome/Recruiters/Major_Recruiters';
 import Register from './components/Registration/Register';
 import Admin from './Admin/admin';
 import UserData from './components/UserData/userdata'
@@ -17,13 +16,16 @@ import StudentPortal from './components/Student Portal/StudentPortal'
 import CompanyBasicData from './components/UserData/Companybasicdata'
 import CompanyPortal from './components/Company Portal/CompanyPortal'
 import CompanyLogin from './components/Login/CompanyLogin'
+import Aim from './components/Welcome/Aim/Aim'
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
       <Route exact path="/" component={Navbar}/>      
       <Route exact path="/" component={Charusat_image}/>
-      <Route exact path="/" component={Major_Recruiters} />
+      <Route exact path="/" component={Aim}/>
+
+      {/* <Route exact path="/" component={Major_Recruiters} /> */}
       
      
         <Switch>

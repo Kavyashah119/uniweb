@@ -1,4 +1,4 @@
-.container {
+.container1 {
     position: relative;
     font-family: Arial;
 }
@@ -25,14 +25,14 @@
     padding-top: 1.6rem;
 } 
 
-.buttons{
+.buttons1{
     position: absolute;
     top: 122px; 
     bottom: 500px;
     text-decoration: none;
 }
 
-.btns{
+.btns1{
     
     position: absolute;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -54,11 +54,11 @@
     line-height:1.1em;
     font-size:1.5em; 
     margin-top: 20px;
-    text-decoration: none;
-    
+    text-decoration: none;    
 }
 
-.btns:hover{
+.btns1:hover{
     transform: scale(1.15);
     transition-duration: 0.3s;
+    
 }
