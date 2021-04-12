@@ -290,6 +290,25 @@ app.post('/companydata/:CUsername',(req,res)=>{
     });
 });
 
+app.post('/CompanyOpeningData',(req,res)=>{
+
+    const  name = req.body.name;
+    const  jobProfile = req.body.jobProfile;
+    const  noOfOpenings = req.body.noOfOpenings;
+    const  skills = req.body.skills;
+    const  experience = req.body.experience;
+    const  DOE = req.body.DOE;
+    const  dueDate = req.body.dueDate;
+    pool.query(`insert into uniweb.companyopeninginfo (CName,CJobProfile,noOfOpenings,CSkillsRequired,CExperienceRequired,CDateExams,CDueDate) values (?,?,?,?,?,?,?)`,[name,jobProfile,noOfOpenings,skills,experience,DOE,dueDate],(err,result)=>{
+        if(err){
+            console.log("Error occured during inserting opening data")
+        }else{
+            console.log("Success insert data into company opening")
+            res.send("Hello there")
+        }
+    })
+})
+
 app.get('/studentsData',(req,res)=>{
     pool.getConnection(function(error,tempCont){
         if(!!error){

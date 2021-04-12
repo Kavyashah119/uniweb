@@ -11,6 +11,11 @@ const CompanyPortal = (props) => {
         console.log(CUsername)
     })
 
+    function Redirect(){
+        CUsername = props.match.params.CUsername
+        window.location.href="/companyaddpost/"+`${CUsername} `
+    }
+
     function myFunction() {
 
         if (window.confirm("Are you sure you want to sign out?")) {
@@ -42,7 +47,7 @@ const CompanyPortal = (props) => {
                 </nav>
 
                 <div>
-                    <button className="btn" onClick={window.location.href="/companyaddpost"} >Add Post</button>
+                    <button className="btn" onClick={Redirect}>Add Post</button>
                 </div>
 
             </div>

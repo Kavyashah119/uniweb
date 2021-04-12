@@ -42,7 +42,7 @@ function App() {
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
           <Route  path="/studentportal/:id" component={StudentPortal} />                              
           <Route exact path="/companyportal/:CUsername" component={CompanyPortal} />  
-          <Route exact path="/companyaddpost" component={CompanyAddPost} />                          
+          <Route exact path="/companyaddpost/:CUsername" component={CompanyAddPost} />                          
         </Switch>          
       </BrowserRouter>
      
