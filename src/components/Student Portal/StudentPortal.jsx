@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './StudentPortal.css';
 import Charusat_image from '../Welcome/Charusat_image'
+import ApprovedOpening from '../UserData/ApprovedOpening'
 
 const StudentPortal = (props) => {
 
@@ -40,6 +41,7 @@ const StudentPortal = (props) => {
                     <a href="#home">Home</a>
                     <a href="" className="heading">University Placements</a>
                 </nav>
+                <ApprovedOpening/>
             </div>
 
         </>

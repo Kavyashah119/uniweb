@@ -39,6 +39,10 @@ class userdata extends Component {
                 accessor : "ID"
             },
             {
+                Header: "Password",
+                accessor : "SPassword"
+            },
+            {
                 Header: "Branch",
                 accessor : "Branch"
             },

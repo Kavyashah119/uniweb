@@ -256,6 +256,27 @@ app.get('/studentsData/:ID',(req,res)=>{
     });
 });
 
+//Approved Company Data
+app.get('/approvedCompany',(req,res)=>{
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from approvedcompanybasic`,(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
 // company request spesific basic data
 app.post('/companydata/:CUsername',(req,res)=>{
 
@@ -289,6 +310,52 @@ app.post('/companydata/:CUsername',(req,res)=>{
         
     });
 });
+
+//Approve Opening Data
+app.post('/ApprovedOpeningRequest/:CName',(req,res)=>{
+
+   const CJobProfile = req.body.CJobProfile
+
+    let sql = `insert into approvedcompanyopening select * from companyopeninginfo where CName = ? and CJobProfile =?`;
+    let query  = pool.query(sql,[req.params.CName,CJobProfile],(err,results) =>{
+        if(err){
+            throw err;
+        } else{
+            pool.query(`delete from uniweb.companyopeninginfo where CName=? and CJobProfile =?`,[req.params.CName,CJobProfile],(e,r)=>{
+                if(e){
+                    console.log(e)
+                }else{
+                    // res.send("Data Inserted in userauth also")
+                    console.log("Data deleted from companyopeninginfo also")
+                }
+            })
+            console.log("Success in approved opening")
+           res.send("Success in approve opening")
+        }
+        
+    });
+});
+
+//get approved opening data
+app.get('/ApprovedOpening',(req,res)=>{
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from approvedcompanyopening`,(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
 
 app.post('/CompanyOpeningData',(req,res)=>{
 
@@ -338,6 +405,27 @@ app.get('/companyData',(req,res)=>{
             console.log("Connected..!!");
 
             pool.query(`select * from companyrequest`,(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
+//Get Opening requests
+app.get('/OpeningRequest',(req,res)=>{
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from companyopeninginfo`,(err,rows,fields)=>{
                 tempCont.release();
                 if(err){
                     throw err;
