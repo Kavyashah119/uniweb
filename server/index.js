@@ -277,6 +277,43 @@ app.get('/approvedCompany',(req,res)=>{
     })
 })
 
+//Approved Company Data for a specific student
+app.get('/ApprovedOpeningStudent/:ID',(req,res)=>{
+    // req.params.ID
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from approvedcompanyopening d where not exists (select * from uniweb.applications t where d.CName=t.CompanyName and d.CJobProfile=t.CompanyJD and t.StudentID = ?)`,[req.params.ID],(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
+//Insert Applicant's data into Application Table
+app.post('/StudentApply/:CName',(req,res)=>{
+    const CJobProfile = req.body.CJobProfile
+    const ID = req.body.ID
+
+    pool.query(`insert into applications (StudentID,CompanyName,CompanyJD) values (?,?,?)`,[ID,req.params.CName,CJobProfile],(error,result)=>{
+        if(error){
+            console.log("Error in inserting into application table")
+        }else{
+            console.log("Application Submitted")
+            res.send("Application Submited")
+        }
+    })
+})
+
 // company request spesific basic data
 app.post('/companydata/:CUsername',(req,res)=>{
 

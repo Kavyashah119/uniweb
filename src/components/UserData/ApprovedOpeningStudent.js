@@ -11,7 +11,7 @@ import Axios from 'axios'
 
 
 
-class OpeningRequest extends Component {
+class ApprovedOpening extends Component {
 
     constructor(props) {
         super(props);
@@ -22,7 +22,7 @@ class OpeningRequest extends Component {
     }
 
     componentDidMount() {
-        const url = "http://localhost:3001/OpeningRequest";
+        const url = "http://localhost:3001/ApprovedOpeningStudent"+`/${this.props.id}`;
         fetch(url, {
             method: "GET"
         }).then(response => response.json() ).then(posts => {
@@ -32,15 +32,15 @@ class OpeningRequest extends Component {
         })
     }
 
-    deletePoste(CName,CJobProfile){
+    // deletePoste(CName,CJobProfile){
 
-        const index = this.state.posts.findIndex(post => {
-          return (post.CName === CName)
-        });
-        this.state.posts.splice(index, 1);
-        this.setState({posts: this.state.posts})
+    //     const index = this.state.posts.findIndex(post => {
+    //       return (post.CName === CName)&&(post.CJobProfile===CJobProfile)
+    //     });
+    //     this.state.posts.splice(index, 1);
+    //     this.setState({posts: this.state.posts})
     
-      }
+    //   }
 
 
     render(){
@@ -48,18 +48,19 @@ class OpeningRequest extends Component {
         
         const columns = [
             {
-                Header: "Permission",
+                Header: "Application",
                 Cell: props=>{
                     return(
                         <button className="" onClick={()=>{
                             console.log(props.original.CName)
                             console.log("hey there..")
-                            if(alert(`${props.original.CName} for ${props.original.CJobProfile} has been approved.`)|true){
-                                this.deletePoste(props.original.CUsername,props.original.CJobProfile);
-                                Axios.post(`http://localhost:3001/ApprovedOpeningRequest/${props.original.CName}`,{
-                                    CJobProfile : props.original.CJobProfile
+                            if(alert(`Your Application for ${props.original.CName} for ${props.original.CJobProfile} has been submitted.`)|true){
+                                // this.deletePoste(props.original.CUsername,props.original.CJobProfile);
+                                Axios.post(`http://localhost:3001/StudentApply/${props.original.CName}`,{
+                                    CJobProfile : props.original.CJobProfile,
+                                    ID : this.props.id
                                 }).then((response)=>{
-                                console.log("Data Updated")
+                                console.log("Data Inserted into Application")
                                 })
                             }
                             // this.deletePoste(props.original.CUsername);
@@ -71,7 +72,7 @@ class OpeningRequest extends Component {
                             //     console.log("Data Updated")
                             // })
 
-                        }} >Approve</button>
+                        }} >Apply</button>
                         // <button className="">Disapprove</button>
                     )
                 }
@@ -145,4 +146,4 @@ class OpeningRequest extends Component {
 
 }
 
-export default OpeningRequest;
+export default ApprovedOpening;
