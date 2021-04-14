@@ -394,6 +394,57 @@ app.get('/ApprovedOpening',(req,res)=>{
     })
 })
 
+//Opening for specific company
+app.get('/ApprovedOpening/:CName',(req,res)=>{
+   const CName = req.params.CName
+
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+
+            pool.query(`select * from approvedcompanyopening where CName=?`,[CName],(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
+//Selecting applied students into specific company job profile
+app.get('/StudentsApplication/:CName/:CJobProfile',(req,res)=>{
+    const CName = req.params.CName
+    const CJobProfile = req.params.CJobProfile
+    console.log(CName)
+    console.log(CJobProfile)
+ 
+     pool.getConnection(function(error,tempCont){
+         if(!!error){
+             tempCont.release();
+             console.log("Error");
+         }else{
+             console.log("Connected..!!");
+ 
+             pool.query(`select * from studentinfofinal d where exists(select * from uniweb.applications t where d.ID=t.StudentID and t.CompanyName=? and t.CompanyJD = ?)`,[CName,CJobProfile],(err,rows,fields)=>{
+                 tempCont.release();
+                 if(err){
+                     throw err;
+                 }else{
+                     res.json(rows);
+                 }
+             })
+         }
+     })
+ })
+
+
+
 app.post('/CompanyOpeningData',(req,res)=>{
 
     const  name = req.body.name;

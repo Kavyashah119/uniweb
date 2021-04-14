@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './CompanyPortal.css';
 import Charusat_image from '../Welcome/Charusat_image'
+import CompanyOpeningDetail from '../UserData/CompanyOpeningDetail'
 
 const CompanyPortal = (props) => {
 
@@ -49,6 +50,8 @@ const CompanyPortal = (props) => {
                 <div>
                     <button className="btn" onClick={Redirect}>Add Post</button>
                 </div>
+
+                <CompanyOpeningDetail name={CUsername}/>
 
             </div>
 
