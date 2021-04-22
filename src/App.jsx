@@ -22,6 +22,7 @@ import ApprovedCompany from './components/UserData/ApprovedCompany'
 import OpeningRequest from './components/UserData/OpeningRequest'
 import ApprovedOpening from './components/UserData/ApprovedOpening'
 import StudentsApplications from './components/UserData/StudentsApplications'
+import StudentAppliedCompany from './components/UserData/StudentAppliedCompany'
 function App() {
   return (
     <div className="App">
@@ -47,7 +48,8 @@ function App() {
           <Route exact path="/admin/OpeningRequest" component={OpeningRequest}/>
           <Route exact path="/admin/ApprovedOpening" component={ApprovedOpening}/>
           <Route  path="/student/profile/:id" component={StudentUpdate}/>
-          <Route  path="/studentportal/:id" component={StudentPortal} />                              
+          <Route exact path="/studentportal/:id" component={StudentPortal} />                              
+          <Route exact path="/studentportal/:id/AppliedCompanies" component={StudentAppliedCompany} />                              
           <Route exact path="/companyportal/:CUsername" component={CompanyPortal} />  
           <Route exact path="/companyportal/:CUsername/:CJobProfile" component={StudentsApplications} />  
           <Route exact path="/companyaddpost/:CUsername" component={CompanyAddPost} />                          

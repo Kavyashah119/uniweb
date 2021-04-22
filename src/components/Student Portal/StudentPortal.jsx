@@ -23,6 +23,7 @@ const StudentPortal = (props) => {
     UserID=props.match.params.id
     console.log(UserID)
     var Link = `/student/profile/${UserID}`
+    var link =`/studentportal/${UserID}/AppliedCompanies`
     return (
         <>
 
@@ -37,7 +38,7 @@ const StudentPortal = (props) => {
                             <a onClick={myFunction}> Sign-out </a>
                         </div>
                     </div>
-                    <a href="#news">News</a>
+                    <a href={link}>Status</a>
                     <a href="#home">Home</a>
                     <a href="" className="heading">University Placements</a>
                 </nav>

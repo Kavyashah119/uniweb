@@ -314,6 +314,46 @@ app.post('/StudentApply/:CName',(req,res)=>{
     })
 })
 
+
+//Company Selecting Student for the position
+app.post('/StudentSelect/:CName',(req,res)=>{
+    const CJobProfile = req.body.CJobProfile
+    const ID = req.body.ID
+    var status = "Selected"
+    console.log(ID)
+
+    pool.query(`update applications set status=? where StudentID=? and CompanyName=? and CompanyJD=?`,[status,ID,req.params.CName,CJobProfile],(error,result)=>{
+        if(error){
+            console.log("Error in inserting into application table")
+        }else{
+            console.log("Student wfnwe")
+            res.send("Student Selected")
+        }
+    })
+})
+
+//showing students companies in where they have applied
+app.get('/StudentAppliedCompanies/:ID',(req,res)=>{
+    // req.params.ID
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+            var status="Selected"
+            pool.query(`select CompanyName,CompanyJD,status from applications where StudentID=?`,[req.params.ID],(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
 // company request spesific basic data
 app.post('/companydata/:CUsername',(req,res)=>{
 
@@ -431,7 +471,7 @@ app.get('/StudentsApplication/:CName/:CJobProfile',(req,res)=>{
          }else{
              console.log("Connected..!!");
  
-             pool.query(`select * from studentinfofinal d where exists(select * from uniweb.applications t where d.ID=t.StudentID and t.CompanyName=? and t.CompanyJD = ?)`,[CName,CJobProfile],(err,rows,fields)=>{
+             pool.query(`select * from studentinfofinal d where exists(select * from uniweb.applications t where d.ID=t.StudentID and t.CompanyName=? and t.CompanyJD = ? and t.status="Pending")`,[CName,CJobProfile],(err,rows,fields)=>{
                  tempCont.release();
                  if(err){
                      throw err;

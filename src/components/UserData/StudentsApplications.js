@@ -4,6 +4,7 @@ import React, {
 import ReactTable from 'react-table-6'
 import "react-table-6/react-table.css"
 import ExportToExcel from './ExportToExcel';
+import Axios from 'axios'
 // import 'react-table/dist/react-table.development.css'
 // import ExportToExcel from './ExportToExcel'
 
@@ -36,6 +37,36 @@ class StudentsApplications extends Component {
     render(){
         
         const columns = [
+            {
+                Header: "Action",
+                Cell: props=>{
+                    return(
+                        <button className="" onClick={()=>{
+                            console.log(this.props.match.params.CUsername)
+                            console.log("hey there..")
+                            if(alert(`${props.original.ID} has been selected`)|true){
+                                // this.deletePoste(props.original.CUsername,props.original.CJobProfile);
+                                Axios.post(`http://localhost:3001/StudentSelect/${this.props.match.params.CUsername}`,{
+                                    CJobProfile : this.props.match.params.CJobProfile,
+                                    ID : props.original.ID
+                                }).then((response)=>{
+                                console.log("Student Selected")
+                                })
+                            }
+                            // this.deletePoste(props.original.CUsername);
+
+                            // Axios.post(`http://localhost:3001/companydata/${props.original.CUsername}`,{
+                            //     CUsername : props.original.CUsername,
+                            //     CPassword : props.original.CPassword
+                            // }).then((response)=>{
+                            //     console.log("Data Updated")
+                            // })
+
+                        }} >Select</button>
+                        // <button className="">Disapprove</button>
+                    )
+                }
+            },
             {
                 Header: "Student ID",
                 accessor : "ID"
