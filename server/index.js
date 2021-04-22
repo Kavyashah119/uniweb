@@ -354,6 +354,28 @@ app.get('/StudentAppliedCompanies/:ID',(req,res)=>{
     })
 })
 
+//Placed Students for Admin
+app.get('/StudentAppliedCompanies',(req,res)=>{
+    // req.params.ID
+    pool.getConnection(function(error,tempCont){
+        if(!!error){
+            tempCont.release();
+            console.log("Error");
+        }else{
+            console.log("Connected..!!");
+            var status="Selected"
+            pool.query(`select * from applications where status=?`,[status],(err,rows,fields)=>{
+                tempCont.release();
+                if(err){
+                    throw err;
+                }else{
+                    res.json(rows);
+                }
+            })
+        }
+    })
+})
+
 // company request spesific basic data
 app.post('/companydata/:CUsername',(req,res)=>{
 

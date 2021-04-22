@@ -50,7 +50,8 @@ class StudentsApplications extends Component {
                                     CJobProfile : this.props.match.params.CJobProfile,
                                     ID : props.original.ID
                                 }).then((response)=>{
-                                console.log("Student Selected")
+                                    window.location.reload(false)
+                                console.log(response)
                                 })
                             }
                             // this.deletePoste(props.original.CUsername);

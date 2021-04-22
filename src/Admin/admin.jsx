@@ -11,7 +11,7 @@ function admin() {
         window.location.href = "/admin/RegisteredStudent";
     }
     const SelectedStudent = () => {
-        window.location.href = "/admin/RegisteredStudent";
+        window.location.href = "/admin/SelectedStudents";
     }
     const RegisteredCompanyRequest = () => {
         window.location.href = "/admin/RegisteredCompany";
@@ -26,7 +26,7 @@ function admin() {
         window.location.href = "/admin/ApprovedOpening";
     }
     const PlacedCompany = () => {
-        window.location.href = "/admin/RegisteredCompany";
+        window.location.href = "/admin/PlacedCompany";
     }
 
     return (
