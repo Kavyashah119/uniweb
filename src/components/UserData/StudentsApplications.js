@@ -48,7 +48,8 @@ class StudentsApplications extends Component {
                                 // this.deletePoste(props.original.CUsername,props.original.CJobProfile);
                                 Axios.post(`http://localhost:3001/StudentSelect/${this.props.match.params.CUsername}`,{
                                     CJobProfile : this.props.match.params.CJobProfile,
-                                    ID : props.original.ID
+                                    ID : props.original.ID,
+                                    email : props.original.CharusatEmail
                                 }).then((response)=>{
                                     window.location.reload(false)
                                 console.log(response)

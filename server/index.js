@@ -2,6 +2,8 @@ const { createPool } = require('mysql');
 const express = require('express');
 const cors= require('cors');
 const {BrowserRouter,Route,Link} = require('react-router-dom');
+var nodemailer = require('nodemailer');
+
 
 const app = express();
 app.use(cors());
@@ -10,6 +12,16 @@ app.use(express.json());
 app.listen(3001,()=>{
     console.log("Your server is running on port 3001");
 })
+
+var transport = nodemailer.createTransport(
+    {
+        service:'gmail',
+        auth:{
+            user:'malavkirtan@gmail.com',
+            pass:'AnroidAppSgp'
+        }
+    }
+)
 
 const pool = createPool({
     host:"localhost",
@@ -319,8 +331,25 @@ app.post('/StudentApply/:CName',(req,res)=>{
 app.post('/StudentSelect/:CName',(req,res)=>{
     const CJobProfile = req.body.CJobProfile
     const ID = req.body.ID
+    const email = req.body.email
     var status = "Selected"
     console.log(ID)
+
+    var mailOptions = {
+        from:'malavkirtan@gmail.com',
+        to:email+'',
+        subject:'Placement Cell',
+        text:`Congratulations ${ID} you are selected in the ${req.params.CName} for ${CJobProfile} stay tuned..!!`
+    }
+
+    transport.sendMail(mailOptions,function(error,info){
+        if(error){
+            console.log("in sendmail")
+            console.log(error)
+        }else{
+            console.log("Email sent"+info.response)
+        }
+    })
 
     pool.query(`update applications set status=? where StudentID=? and CompanyName=? and CompanyJD=?`,[status,ID,req.params.CName,CJobProfile],(error,result)=>{
         if(error){
