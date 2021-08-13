@@ -4,6 +4,7 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import { Button } from '../Navbar/Button';
 import Axios from 'axios'
 import {withRouter} from 'react-router-dom'
+import Cryptr from 'crypto-js'
 
 
 const StudentUpdate = (props) => {
@@ -40,6 +41,13 @@ const StudentUpdate = (props) => {
 
 
     useEffect(()=>{
+
+        let ID = sessionStorage.getItem("ID")
+        if(ID!=null){
+            var bytes = Cryptr.AES.decrypt(ID, 'my-secret-key@123');
+            ID= JSON.parse(bytes.toString(Cryptr.enc.Utf8));
+            console.log(ID)
+        }
         // console.log(props.id)
         console.log(props.match.params.id)
         // fetch("https://localhost:3001/studentsData/"+props.match.params.id).then(res=>{
@@ -47,7 +55,10 @@ const StudentUpdate = (props) => {
         // }).then((result)=>{
         //     console.log(result)
         // })
-        Axios.get(`http://localhost:3001/studentsData/${props.match.params.id}`).then(res=>{
+        if(ID!=props.match.params.id){
+            window.location.href="/pagenotfoundAuthorization"
+        }else{
+            Axios.get(`http://localhost:3001/studentsData/${props.match.params.id}`).then(res=>{
             console.log(res.data)
             setAddress(res.data[0].Address)
             setLastName(res.data[0].LastName)
@@ -73,7 +84,7 @@ const StudentUpdate = (props) => {
             setPincode(res.data[0].Pincode)
             setPassword(res.data[0].SPassword)
             setLocation(res.data[0].PreferredLocation)
-        })
+        })}
     },[]);
 
     const UpdateData = (props) =>{
