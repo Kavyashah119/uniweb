@@ -3,6 +3,7 @@ const express = require('express');
 const cors= require('cors');
 const {BrowserRouter,Route,Link} = require('react-router-dom');
 var nodemailer = require('nodemailer');
+// const { default: ApprovedOpeningStudent } = require('../src/components/UserData/ApprovedOpeningStudent');
 
 
 const app = express();
@@ -18,7 +19,7 @@ var transport = nodemailer.createTransport(
         service:'gmail',
         auth:{
             user:'malavkirtan@gmail.com',
-            pass:'AnroidAppSgp'
+            pass:'bgibzsjfwvlbmwns'
         }
     }
 )
@@ -59,9 +60,10 @@ app.post('/login',(req,res)=>{
                     }else{
                         if(Object.keys(resultI).length ===0 ){
                             console.log("Invalid Combination!!");
+                            res.send("Invalid")
                         }else{
                             console.log(resultI)
-                            res.send(resultI);
+                            res.send("Valid");
                             
                             // res.send(result)
                         }

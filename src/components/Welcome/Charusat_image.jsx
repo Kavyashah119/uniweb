@@ -6,6 +6,14 @@ import Images from '../Images/charusat.jpg';
 import Register from '../Registration/Register';
 
 class Charusat_image extends Component {
+
+    constructor(props){
+        super(props);
+
+        let temp = sessionStorage.getItem("IsLogin");
+        console.log(temp)
+    }
+    
     render() {
         return (
             <>

@@ -15,6 +15,10 @@ const StudentPortal = (props) => {
     function myFunction() {
 
         if (window.confirm("Are you sure you want to sign out?")) {
+            sessionStorage.removeItem("IsLogin")
+            sessionStorage.removeItem("IsStudent")
+            sessionStorage.removeItem("IsCompany")
+            sessionStorage.removeItem("ID")
             window.location.href ="/";
         }
         else { }

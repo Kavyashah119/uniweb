@@ -24,6 +24,9 @@ import ApprovedOpening from './components/UserData/ApprovedOpening'
 import StudentsApplications from './components/UserData/StudentsApplications'
 import StudentAppliedCompany from './components/UserData/StudentAppliedCompany'
 import PlacedStudents from './components/UserData/PlacedStudents'
+import PageNotFound from './pagenotfound';
+import pagenotfoundAuthorized from './pagenotfoundAuthorized';
+import pagenotfoundLogin from './pagenotfoundLogin';
 function App() {
   return (
     <div className="App">
@@ -37,6 +40,9 @@ function App() {
      
         <Switch>
           <Route exact path="/login" component={StudentLogin}/>                             
+          <Route exact path="/pagenotfound" component={PageNotFound}/>                             
+          <Route exact path="/pagenotfoundAuthorization" component={pagenotfoundAuthorized}/>                             
+          <Route exact path="/pagenotfoundLogin" component={pagenotfoundLogin}/>                             
           <Route exact path="/Companylogin" component={CompanyLogin}/>                             
           <Route exact path="/demo" component={Charusat_image}/>
           <Route exact path="/studentregister" component={Register}/>                             

@@ -3,6 +3,13 @@ import Axios from 'axios';
 import { BrowserRouter, Link, Route } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import StudentPortal from '../Student Portal/StudentPortal'
+import ApprovedOpening from '../UserData/ApprovedOpeningStudent';
+import ApprovedOpeningStudent from '../UserData/ApprovedOpeningStudent';
+import Cryptr from 'crypto-js'
+
+
+const StudentID = "";
+
 
 function StudentLogin() {
 
@@ -15,10 +22,45 @@ function StudentLogin() {
             UserID: UserID,
             UserPassword: UserPassword
         }).then((response) => {
-            window.location.href = "/studentportal/" + `${UserID}`;
-            console.log(response);
-            console.log("Kavya");
+            // StudentID = UserID;
+            // <ApprovedOpening UserID={StudentID}/>
+            //
+            // return <ApprovedOpeningStudent UserID={UserID}/>
+            let result = response.data;
+            // console.log("Demo Testing"+"   "+result)
+            if(result=="Valid"){
+                let IsLogin = 1;
+                let IsStudent=1;
+                let IsCompany=0;
+                let Password = UserPassword;
+                //let IsAdmin=0;
+                let ID=UserID;
+                ID  = Cryptr.AES.encrypt(JSON.stringify(ID), 'my-secret-key@123').toString();
+                Password  = Cryptr.AES.encrypt(JSON.stringify(Password), 'my-secret-key@123').toString();
+                // ID=crptr.decrypt(ID)
+                // IsStudent=crptr.encrypt(IsStudent)
+                // IsCompany=crptr.encrypt(IsCompany)
+                // IsLogin=crptr.encrypt(IsLogin)
+                sessionStorage.setItem('IsLogin',IsLogin);
+                sessionStorage.setItem('IsStudent',IsStudent);
+                sessionStorage.setItem('IsCompany',IsCompany);
+                sessionStorage.setItem('ID',ID);
+                localStorage.setItem("ID",ID);
+                localStorage.setItem("Password",Password);
+                window.location.href = "/studentportal/" + `${UserID}`;
+                console.log(response);
+                console.log("Kavya");
+            }else{
+                if(window.confirm("Invalid Credentials..!! Do you want to try again?")){
+                    window.location.href="/login"
+                }else{
 
+                }
+            }
+            
+        //    return <ApprovedOpeningStudent userID={UserID}/>
+            
+ 
 
             // console.log(response);
 
