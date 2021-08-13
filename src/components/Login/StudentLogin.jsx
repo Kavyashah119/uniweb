@@ -17,6 +17,60 @@ function StudentLogin() {
     const [UserPassword, setUserPassword] = useState("");
 
 
+    let retrieveID = localStorage.getItem("ID");
+    let retrievePassword = localStorage.getItem("Password");
+
+    if(retrieveID!=null && retrievePassword!==null){
+            var bytes = Cryptr.AES.decrypt(retrieveID, 'my-secret-key@123');
+            retrieveID= JSON.parse(bytes.toString(Cryptr.enc.Utf8));
+            var bytesfor = Cryptr.AES.decrypt(retrievePassword, 'my-secret-key@123');
+            retrievePassword= JSON.parse(bytesfor.toString(Cryptr.enc.Utf8));
+
+            Axios.post("http://localhost:3001/login",{
+                UserID: retrieveID,
+                UserPassword: retrievePassword
+            }).then((response)=>{
+                let result = response.data;
+                // console.log("Demo Testing"+"   "+result)
+                if(result=="Valid"){
+                    let IsLogin = 1;
+                    let IsStudent=1;
+                    let IsCompany=0;
+                    let Password = UserPassword;
+                    //let IsAdmin=0;
+                    let ID=retrieveID;
+                    ID  = Cryptr.AES.encrypt(JSON.stringify(ID), 'my-secret-key@123').toString();
+                    // Password  = Cryptr.AES.encrypt(JSON.stringify(Password), 'my-secret-key@123').toString();
+                    // ID=crptr.decrypt(ID)
+                    // IsStudent=crptr.encrypt(IsStudent)
+                    // IsCompany=crptr.encrypt(IsCompany)
+                    // IsLogin=crptr.encrypt(IsLogin)
+                    sessionStorage.setItem('IsLogin',IsLogin);
+                    sessionStorage.setItem('IsStudent',IsStudent);
+                    sessionStorage.setItem('IsCompany',IsCompany);
+                    sessionStorage.setItem('ID',ID);
+                    // localStorage.setItem("ID",ID);
+                    // localStorage.setItem("Password",Password);
+                    window.location.href = "/studentportal/" + `${retrieveID}`;
+                    console.log(response);
+                    console.log("Kavya");
+                }else{
+
+                    if(window.confirm("Invalid Credentials..!! Do you want to try again?")){
+                        localStorage.removeItem("ID");
+                        localStorage.removeItem("Password");
+                        window.location.href="/login"
+                    }else{
+    
+                    }
+
+                   
+                }
+            })
+
+    }
+
+
     const login = (props) => {
         Axios.post("http://localhost:3001/login", {
             UserID: UserID,

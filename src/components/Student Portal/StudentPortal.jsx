@@ -19,6 +19,11 @@ const StudentPortal = (props) => {
             sessionStorage.removeItem("IsStudent")
             sessionStorage.removeItem("IsCompany")
             sessionStorage.removeItem("ID")
+            let temp = localStorage.getItem("ID");
+            if(temp!=null){
+                localStorage.removeItem("ID")
+                localStorage.removeItem("Password")
+            }
             window.location.href ="/";
         }
         else { }
