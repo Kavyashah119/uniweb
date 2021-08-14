@@ -7,14 +7,25 @@ import ExportToExcel from './ExportToExcel';
 import Axios from 'axios'
 // import 'react-table/dist/react-table.development.css'
 // import ExportToExcel from './ExportToExcel'
+import Cryptr from 'crypto-js'
 
 
+let ID, IsLogin, IsStudent, IsCompany;
 
-
-class StudentAppliedCompany extends Component {
+class StudentAppliedCompany extends Component {    
 
     constructor(props) {
-        super(props);
+        super(props);      
+        
+        ID = sessionStorage.getItem('ID');
+        IsLogin = sessionStorage.getItem('IsLogin');
+        IsStudent = sessionStorage.getItem('IsStudent');
+        IsCompany = sessionStorage.getItem('IsCompany');
+
+        if(ID!=null){
+            var bytes = Cryptr.AES.decrypt(ID, 'my-secret-key@123');
+            ID= JSON.parse(bytes.toString(Cryptr.enc.Utf8));
+        }
 
         this.state = {
             posts: []
@@ -22,15 +33,32 @@ class StudentAppliedCompany extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.id)
-        const url = `http://localhost:3001/StudentAppliedCompanies/${this.props.match.params.id}`;
-        fetch(url, {
-            method: "GET"
-        }).then(response => response.json() ).then(posts => {
-            this.setState({
-                posts: posts
-            })
-        })
+
+        if(IsLogin!=null && IsLogin==1){
+            if(IsStudent!=null && IsStudent==1){
+                if(ID !=null && ID==this.props.match.params.id){
+                    console.log(this.props.match.params.id)
+                    const url = `http://localhost:3001/StudentAppliedCompanies/${this.props.match.params.id}`;
+                    fetch(url, {
+                        method: "GET"
+                    }).then(response => response.json() ).then(posts => {
+                        this.setState({
+                            posts: posts
+                        })
+                    })
+                }else{
+                    window.location.href="/pagenotfoundAuthorization"
+                }
+            }else{
+                window.location.href="/pagenotfoundAuthorization"    
+            }
+
+        }else{
+            window.location.href="/pagenotfoundLogin"
+        }       
+        
+
+        
     }
 
     // deletePoste(CName,CJobProfile){

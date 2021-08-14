@@ -5,7 +5,6 @@ const {BrowserRouter,Route,Link} = require('react-router-dom');
 var nodemailer = require('nodemailer');
 // const { default: ApprovedOpeningStudent } = require('../src/components/UserData/ApprovedOpeningStudent');
 
-
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -22,7 +21,7 @@ var transport = nodemailer.createTransport(
             pass:'bgibzsjfwvlbmwns'
         }
     }
-)
+) 
 
 const pool = createPool({
     host:"uniweb.cxmpwm2natqr.us-east-1.rds.amazonaws.com",

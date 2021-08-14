@@ -36,9 +36,7 @@ let Authorized=false,notAuthorized=false,doLogin=false;
 // IsLogin=IsLogin.toString();
 class ApprovedOpeningStudent extends Component {
     constructor(props) {
-        super(props);
-
-        
+        super(props);        
 
         ID = sessionStorage.getItem('ID')
         console.log(ID)
@@ -52,7 +50,6 @@ class ApprovedOpeningStudent extends Component {
             ID= JSON.parse(bytes.toString(Cryptr.enc.Utf8));
             console.log(ID)
         }
-
        
         // console.log(ID)
 

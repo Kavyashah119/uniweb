@@ -28,7 +28,6 @@ class pagenotfound extends Component{
               <a href="/">Homepage</a>
             </div>
           </div>
-          {/* This templates was made by Colorlib (https://colorlib.com) */}
         </div>
       )}
 }
