@@ -25,8 +25,8 @@ var transport = nodemailer.createTransport(
 )
 
 const pool = createPool({
-    host:"uniweb.cxmpwm2natqr.us-east-1.rds.amazonaws.com",
-    user:"admin",
+    host:"localhost",
+    user:"root",
     password:"Kirtan2303",
     database:"uniweb",
     connectionLimit:10
